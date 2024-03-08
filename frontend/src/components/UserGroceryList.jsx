@@ -38,9 +38,9 @@ const UserDataGrid= () => {
   };
 
   const columns = [
-    { field: 'col1', headerName: 'Item', width: 250, wrap: true },
-    { field: 'col2', headerName: 'Section', width: 150, wrap: true },
-    { field: 'col3', headerName: 'Quantity', width: 150, wrap: true },
+    { field: 'col1', headerName: 'Item', width: 250, wrap: true, flex: 1  },
+    { field: 'col2', headerName: 'Section', width: 150, wrap: true, flex: 1  },
+    { field: 'col3', headerName: 'Quantity', width: 150, wrap: true, flex: 1  },
     {
       field: 'actions',
       headerName: 'Actions',
@@ -77,7 +77,7 @@ const UserDataGrid= () => {
         />
         <button onClick={handleAddItem}>Add Item</button>
       </div>
-      <div style={{ height: 300, width: '100%' }}>
+      <div style={{ height: 300, width: '100vw' }}>
         <DataGrid rows={rows} columns={columns} />
       </div>
     </div>

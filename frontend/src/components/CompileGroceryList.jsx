@@ -26,10 +26,10 @@ const CompileGroceryList= () => {
   };
 
   const columns = [
-    { field: 'col1', headerName: 'Item', width: 150 },
-    { field: 'col2', headerName: 'Section', width: 150 },
-    { field: 'col3', headerName: 'Quantity', width: 150 },
-    { field: 'col4', headerName: 'For Who', width: 150 },
+    { field: 'col1', headerName: 'Item', width: 150, flex: 1 },
+    { field: 'col2', headerName: 'Section', width: 150, flex: 1  },
+    { field: 'col3', headerName: 'Quantity', width: 150, flex: 1  },
+    { field: 'col4', headerName: 'For Who', width: 150, flex: 1  },
     {
       field: 'completed',
       headerName: 'Completed',
@@ -45,7 +45,7 @@ const CompileGroceryList= () => {
   ];
 
   return (
-    <div style={{ height: 300, width: '100%' }}>
+    <div style={{ height: '150%', width: '100vw' }}>
       <DataGrid rows={data} columns={columns} />
     </div>
   );
