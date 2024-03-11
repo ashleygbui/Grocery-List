@@ -15,12 +15,12 @@ const UserDataGrid = () => {
   }, []); // Empty dependency array ensures this effect runs only once, on component mount
 
   const fetchUserData = () => {
-    const url = 'http://127.0.0.1:5173/api/userlist'; // Endpoint URL
-    console.log('Fetching data from:', url); // Log the URL being used for fetching data
+    const url = 'http://127.0.0.1:5173/api/userlist';
+    console.log('Fetching data from:', url); 
   
     fetch(url, {
       headers: {
-        'Accept': 'application/json' // Set the Accept header to indicate JSON response
+        'Accept': 'application/json' 
       }
     })
       
@@ -29,18 +29,15 @@ const UserDataGrid = () => {
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
-        // Parse the JSON response
         return response.json();
       })
       .then(data => {
-        console.log('Fetched data:', data); // Log the fetched data
-        // Update state or perform other actions with the fetched data
+        console.log('Fetched data:', data);
         setUserData(data);
         setRows(data);
       })
       .catch(error => {
-        console.error('Error fetching user data:', error); // Log any errors
-        // Handle errors appropriately (e.g., display an error message to the user)
+        console.error('Error fetching user data:', error);
       });
   };
   
@@ -76,7 +73,6 @@ const UserDataGrid = () => {
   };
 
   const handleDeleteItem = (id) => {
-    // Send a DELETE request to the backend to delete the item
     fetch(`http://127.0.0.1:5173/api/deleteItem/${id}`, {
       method: 'DELETE',
       headers: {

@@ -58,21 +58,37 @@ async def add_item():
 
 @app.route("/api/deleteItem/<string:item_id>", methods=["DELETE"])
 async def delete_item(item_id):
-    global user_grocery_list
+    global user_grocery_list, main_grocery_list
 
-    # Find the index of the item with the specified id in the user grocery list
-    index_to_delete = None
+    user_item_id = "m" + item_id[1:]
+
+    index_to_delete_user = None
     for i, item in enumerate(user_grocery_list):
         if item["id"] == item_id:
-            index_to_delete = i
+            index_to_delete_user = i
             break
+        
+    index_to_delete_main = None
+    for i, item in enumerate(main_grocery_list):
+        if item["id"] == user_item_id:
+            index_to_delete_main = i
+            break
+            
+    if index_to_delete_user is not None and index_to_delete_main is not None:
+        del main_grocery_list[index_to_delete_main]
+        del user_grocery_list[index_to_delete_user]
+        return jsonify({"message": "Item deleted successfully"})
 
-    # If the item is found, remove it from the user grocery list
-    if index_to_delete is not None:
-        del user_grocery_list[index_to_delete]
+    if index_to_delete_main is not None:
+        del main_grocery_list[index_to_delete_main]
+        return jsonify({"message": "Item deleted successfully"})
+    if index_to_delete_user is not None:
+        del user_grocery_list[index_to_delete_user]
         return jsonify({"message": "Item deleted successfully"})
     else:
         return jsonify({"error": "Item not found"}), 404
+
+
     
 
 
